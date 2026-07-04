@@ -1,8 +1,8 @@
 import streamlit as st
 
 # Judul Aplikasi
-st.title("🎨 Canva Contributor Flat Icon Generator")
-st.write("Generate prompt AI untuk **Flat Clipart Set** tanpa garis tepi hitam dan tanpa gradasi, persis seperti gaya gambar image_f0c37f.png.")
+st.title("🎨 Canva Contributor Flat Icon Generator (with Arial Text)")
+st.write("Generate prompt AI untuk **Flat Clipart Set** tanpa garis tepi dengan label nama benda menggunakan **Arial font** di bawahnya (seperti gaya image_f0c37f.png).")
 
 # 1. Pilihan Tema & Objek
 st.subheader("1. Tentukan Objek Elemen")
@@ -28,7 +28,7 @@ if st.button("Generate Flat Vector Prompt ✨"):
     if not custom_subject:
         st.warning("Mohon isi daftar objek terlebih dahulu!")
     else:
-        # Karakteristik utama image_f0c37f.png: Flat murni, tanpa outline, sangat mudah di-trace
+        # Karakteristik utama flat design tanpa outline
         vector_preset = (
             "minimalist flat vector illustration style, NO outlines, NO linework, "
             "100% solid flat colors, absolutely no gradients, no shading, no shadows, "
@@ -40,17 +40,23 @@ if st.button("Generate Flat Vector Prompt ✨"):
                 f"{vector_preset}, adorable simple faces on each item, "
                 f"cute black dot eyes with tiny white highlights, simple curved smile mouths, kawaii blushing cheeks"
             )
-            negative_param = "--no outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured"
+            negative_param = "--no outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured cursive-fonts handwritten-fonts"
         else:
             style_preset = (
                 f"{vector_preset}, literal inanimate object representation, clean corporate flat design, "
                 f"strictly no faces, no eyes, no mouth"
             )
-            negative_param = "--no faces eyes mouth characters outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured"
+            negative_param = "--no faces eyes mouth characters outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured cursive-fonts handwritten-fonts"
 
-        # Isolasi ketat tanpa border putih luar dan tanpa tulisan nama agar fokus pada bentuk bersih
+        # Menambahkan instruksi teks label bahasa inggris berjenis font Arial tepat di bawah objek
+        text_instruction = (
+            "each individual item must have its English name text written neatly directly underneath the icon, "
+            "the text must use clean sans-serif Arial font, crisp typography, clear legible letters, no cursive"
+        )
+
+        # Isolasi ketat tanpa border putih luar
         isolation_keywords = (
-            "clean vector asset sheet, multiple individual elements, neatly scattered, "
+            f"clean vector asset sheet, multiple individual elements, neatly scattered, {text_instruction}, "
             "isolated on a seamless solid pure white background, no outer white borders, "
             "clear separation between elements, professional graphic asset, asset for Canva"
         )
@@ -63,12 +69,12 @@ if st.button("Generate Flat Vector Prompt ✨"):
         )
 
         # Menampilkan Hasil
-        st.success(f"Prompt gaya Flat Vector {'Kawaii' if 'Kawaii' in style_option else 'Non-Kawaii'} berhasil dibuat!")
-        st.text_area("Salin prompt ini ke DALL-E 3 / Midjourney v6 / Leonardo.ai:", value=final_prompt, height=200)
+        st.success(f"Prompt Flat Vector {'Kawaii' if 'Kawaii' in style_option else 'Non-Kawaii'} dengan Teks Arial berhasil dibuat!")
+        st.text_area("Salin prompt ini ke DALL-E 3 (paling direkomendasikan untuk teks):", value=final_prompt, height=220)
         
-        # Edukasi Tracing Vektor untuk Gaya Ini
+        # Tips Tambahan
         st.info(f"""
-        💡 **Mengapa gaya ini paling sempurna untuk Vektor (SVG)?**
-        * **`NO outlines, NO linework`**: Menghilangkan garis hitam penutup. Hasil tracing akan berupa potongan bidang warna yang bersih (*solid paths*) sehingga sangat disukai oleh pengguna Canva karena mudah diubah warnanya secara kustom.
-        * **`100% solid flat colors`**: Tanpa adanya gradasi atau bayangan lembut, software seperti Adobe Illustrator atau Vectorizer.ai bisa mengubah gambar ini menjadi SVG dalam hitungan detik dengan akurasi hampir 100% mirip aslinya.
+        💡 **Tips Menghasilkan Huruf yang Sempurna:**
+        * **Gunakan DALL-E 3 (ChatGPT Plus/Bing Image Creator)**: DALL-E 3 sangat patuh pada instruksi jenis huruf seperti `sans-serif Arial font` sehingga teks label nama benda di bawah gambar tidak akan berantakan atau *typo*.
+        * **Parameter Negatif Tambahan**: Ditambahkan larangan `--no cursive-fonts handwritten-fonts` untuk mencegah AI menggunakan gaya tulisan tangan atau huruf sambung yang sulit dibaca.
         """)
