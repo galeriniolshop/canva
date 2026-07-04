@@ -1,62 +1,54 @@
 import streamlit as st
 
 # Judul Aplikasi
-st.title("🎨 Canva Contributor Element Prompt Generator")
-st.write("Generate prompt AI yang siap menghasilkan elemen desain (PNG/Vektor) berkualitas untuk Canva.")
+st.title("🎨 Canva Contributor Sticker Set Generator")
+st.write("Generate prompt AI khusus untuk menghasilkan **Sticker Icon Set** bertema sekolah imut seperti gambar contoh.")
 
-# 1. Pilihan Jenis Elemen
-element_type = st.selectbox(
-    "Pilih Jenis Elemen:",
-    ["3D Renders / Pop-out", "Flat Vector Illustration", "Watercolors", "Line Art / Minimalist", "Sticker Style"]
+# 1. Pilihan Tema Objek (Disesuaikan dengan gaya "Back to School")
+st.subheader("1. Pilih Tema & Objek")
+theme_type = st.selectbox(
+    "Pilih Fokus Tema:",
+    ["Back to School / School Supplies", "Cute Stationery Set", "Custom Theme (Tulis di bawah)"]
 )
 
-# 2. Input Objek Utama
-subject = st.text_input("Objek Utama (Contoh: 'cute cat holding a coffee cup', 'aesthetic tropical leaf'):")
+# Input objek spesifik jika ingin kustom
+custom_subject = st.text_input(
+    "Daftar Objek Spesifik (Pisahkan dengan koma jika banyak, contoh: pencil, notebook, backpack, calculator):",
+    value="pencil, pen, notebook, backpack, pencil case, ruler, eraser, scissors, glue, crayons, calculator, books, apple, globe, sharpener, tape dispenser, sticky notes"
+)
 
-# 3. Pilihan Warna (Palette)
+# 2. Pengaturan Gaya Visual (Dikunci ke gaya gambar image_a00670.jpg)
+st.subheader("2. Pengaturan Gaya (Style)")
+style_preset = "Kawaii sticker design, cute cartoon vector style, bold clean outlines, adorable smiley faces on each item, soft chibification"
+
 color_style = st.selectbox(
-    "Pilih Gaya Warna:",
-    ["Pastel colors", "Vibrant & Bold", "Earth tones / Boho", "Neon / Futuristic", "Monochrome", "Custom (Tulis di bawah)"]
+    "Pilih Palet Warna:",
+    ["Bright Pastel colors", "Vibrant & Playful", "Soft Candy tones"]
 )
 
-custom_color = ""
-if color_style == "Custom (Tulis di bawah)":
-    custom_color = st.text_input("Masukkan warna kustom (Contoh: 'soft pink and mint green'):")
-
-# 4. Tombol Generate
-if st.button("Generate Prompt ✨"):
-    if not subject:
-        st.warning("Mohon isi objek utama terlebih dahulu!")
+# 3. Tombol Generate
+if st.button("Generate Sticker Set Prompt ✨"):
+    if not custom_subject:
+        st.warning("Mohon isi daftar objek terlebih dahulu!")
     else:
-        # Menentukan gaya warna yang digunakan
-        selected_color = custom_color if color_style == "Custom (Tulis di bawah)" else color_style
+        # Keyword isolasi mutlak untuk Canva Contributor agar background bersih tanpa bayangan
+        isolation_keywords = "sticker pack sheet, multiple items set, isolated on a solid clean white background, die-cut, no shadows, professional graphic asset, commercial design, asset for Canva"
         
-        # Pengatur kata kunci isolasi agar background putih/transparan mudah dihapus
-        isolation_keywords = "isolated on a solid white background, die-cut, no shadows, professional graphic asset, commercial design, asset for Canva"
-        
-        # Logika pembentukan prompt berdasarkan jenis elemen
-        if element_type == "3D Renders / Pop-out":
-            prompt = f"3D icon of {subject}, claymation style, smooth glossy texture, {selected_color}, cute and modern, {isolation_keywords}, high resolution, 8k render"
-        
-        elif element_type == "Flat Vector Illustration":
-            prompt = f"Flat vector illustration of {subject}, cute aesthetic, clean lines, geometric shapes, {selected_color}, corporate Memphis style, {isolation_keywords}, SVG style"
-        
-        elif element_type == "Watercolors":
-            prompt = f"Beautiful watercolor illustration of {subject}, soft edges, hand-drawn look, detailed textures, {selected_color}, {isolation_keywords}, artistic and elegant"
-        
-        elif element_type == "Line Art / Minimalist":
-            prompt = f"Minimalist continuous line art of {subject}, elegant and simple, black lines with accent {selected_color} shapes, {isolation_keywords}, aesthetic design"
-        
-        elif element_type == "Sticker Style":
-            prompt = f"Kawaii sticker design of {subject}, thick white outline, bold colors, {selected_color}, cartoon style, fun and playful, {isolation_keywords}"
+        # Merangkai prompt akhir
+        final_prompt = (
+            f"A sticker sheet of {theme_type} elements including {custom_subject}. "
+            f"{style_preset}, {color_style}, arrangement of various items, {isolation_keywords}, "
+            f"flat design, 2d vector look, high resolution, ultra detailed --no shadows background-gradients photorealistic"
+        )
 
         # Menampilkan Hasil
-        st.success("Prompt berhasil dibuat!")
-        st.text_area("Salin prompt di bawah ini untuk Midjourney / DALL-E / Leonardo:", value=prompt, height=100)
+        st.success("Prompt gaya 'Back to School Kawaii' berhasil dibuat!")
+        st.text_area("Salin prompt ini ke Midjourney / DALL-E 3 / Leonardo.ai:", value=final_prompt, height=150)
         
-        # Tips Tambahan untuk Kontributor
-        st.info("""
-        💡 **Tips Canva Contributor:**
-        * Gunakan tools seperti **Photoroom** atau **Remove.bg** untuk menghapus background putih menjadi transparan sebelum di-upload ke Canva.
-        * Jika menggunakan Midjourney, Anda bisa menambahkan parameter `--no background gradients` di akhir prompt untuk hasil yang lebih bersih.
+        # Tips Tambahan agar hasilnya mirip gambar
+        st.info(f"""
+        💡 **Tips Optimasi untuk Hasil seperti image_a00670.jpg:**
+        * **Midjourney v6**: Gunakan parameter `--style raw` jika hasilnya terlalu realistis. Kode `--no shadows background-gradients` di akhir prompt akan membantu menjaga background tetap putih polos.
+        * **DALL-E 3 (ChatGPT)**: Salin langsung prompt di atas. DALL-E sangat pintar mengenali perintah seperti *"smiley faces on each item"*.
+        * **Proses Akhir**: Setelah gambar jadi, Anda tinggal memotong masing-masing ikon menggunakan tools vectorizer atau langsung menghapus background putihnya menjadi transparan (PNG).
         """)
