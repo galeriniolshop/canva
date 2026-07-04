@@ -1,79 +1,74 @@
 import streamlit as st
 
 # Judul Aplikasi
-st.title("🎨 Canva Contributor Clip Art Generator")
-st.write("Generate prompt AI untuk **Clip Art / Icon Set** yang *Vectorize-Friendly* (mudah dan rapi saat di-*trace* menjadi SVG).")
+st.title("🎨 Canva Contributor Flat Icon Generator")
+st.write("Generate prompt AI untuk **Flat Clipart Set** tanpa garis tepi hitam dan tanpa gradasi, persis seperti gaya gambar image_f0c37f.png.")
 
 # 1. Pilihan Tema & Objek
 st.subheader("1. Tentukan Objek Elemen")
 theme_type = st.selectbox(
     "Pilih Fokus Tema:",
-    ["Back to School / Education", "Cute Stationery & School Life", "Custom Theme (Tulis di bawah)"]
+    ["Back to School / Education", "Cute Science & Math Lab Supplies", "Custom Theme (Tulis di bawah)"]
 )
 
 custom_subject = st.text_input(
     "Daftar Objek (Pisahkan dengan koma):",
-    value="school building, school bus, blackboard easel, backpack, notebook, scissors, pencil, apple, basketball, calculator"
+    value="beaker, hourglass, protractor, pencil holder, notebook, highlighter, ruler, compass, sharpener, scissors, calculator"
 )
 
 # 2. OPSI GAYA: Kawaii vs Non-Kawaii
 st.subheader("2. Pilihan Gaya Visual")
 style_option = st.radio(
     "Pilih Gaya Ikon:",
-    ["Kawaii Style (Imut, Ada Wajah Karakter)", "Non-Kawaii Style (Polos, Objek Murni Tanpa Wajah)"]
+    ["Kawaii Style (Imut dengan Mata Lingkaran & Senyum)", "Non-Kawaii Style (Polos, Objek Minimalis Murni)"]
 )
 
 # 3. Tombol Generate
-if st.button("Generate Vector-Ready Prompt ✨"):
+if st.button("Generate Flat Vector Prompt ✨"):
     if not custom_subject:
         st.warning("Mohon isi daftar objek terlebih dahulu!")
     else:
-        # Menambahkan parameter 'vectorize-friendly' dan optimasi tracing warna
-        vector_optimization = (
-            "vectorize-friendly design, clean solid color fills, sharp color separation, "
-            "no complex textures, no mesh gradients, smooth high-contrast edges"
+        # Karakteristik utama image_f0c37f.png: Flat murni, tanpa outline, sangat mudah di-trace
+        vector_preset = (
+            "minimalist flat vector illustration style, NO outlines, NO linework, "
+            "100% solid flat colors, absolutely no gradients, no shading, no shadows, "
+            "clean geometric shapes, slightly rounded corners, perfect for auto-tracing"
         )
 
         if "Kawaii" in style_option:
             style_preset = (
-                f"Cute kawaii doodle clipart style, prominent thick black outlines, bold clean linework, "
-                f"smooth rounded corners, adorable chibi faces with big shiny black eyes and cute smiles on each object, "
-                f"2d flat vector illustration look, {vector_optimization}"
+                f"{vector_preset}, adorable simple faces on each item, "
+                f"cute black dot eyes with tiny white highlights, simple curved smile mouths, kawaii blushing cheeks"
             )
-            negative_param = "--no faces eyes mouth characters stickers die-cut white-outlines borders drop-shadows photorealistic 3d-render blurs watercolor noise textures"
+            negative_param = "--no outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured"
         else:
             style_preset = (
-                f"Standard flat design clipart style, prominent thick black outlines, bold clean linework, "
-                f"smooth rounded corners, inanimate objects only, realistic item details, literal item representation, "
-                f"2d flat vector illustration design, {vector_optimization}"
+                f"{vector_preset}, literal inanimate object representation, clean corporate flat design, "
+                f"strictly no faces, no eyes, no mouth"
             )
-            negative_param = "--no faces eyes mouth characters stickers die-cut white-outlines borders drop-shadows photorealistic 3d-render blurs watercolor noise textures"
+            negative_param = "--no faces eyes mouth characters outlines linework black-borders gradients shading shadows stickers die-cut photorealistic 3d-render textured"
 
-        # Instruksi teks label di bawah objek
-        text_instruction = "each item must have its English name text written neatly in a cute simple font directly underneath the icon"
-
-        # Isolasi ketat tanpa border putih luar
+        # Isolasi ketat tanpa border putih luar dan tanpa tulisan nama agar fokus pada bentuk bersih
         isolation_keywords = (
-            f"clean clipart sheet, multiple individual elements, neatly scattered, {text_instruction}, "
-            "isolated on a seamless solid pure white background, no outer white sticker borders, "
-            "no shadows, professional graphic asset, commercial design, asset for Canva"
+            "clean vector asset sheet, multiple individual elements, neatly scattered, "
+            "isolated on a seamless solid pure white background, no outer white borders, "
+            "clear separation between elements, professional graphic asset, asset for Canva"
         )
         
         # Merangkai prompt akhir
         final_prompt = (
-            f"A colorful clipart sheet of {theme_type} elements containing {custom_subject}. "
-            f"{style_preset}, bright pastel colors, {isolation_keywords}, "
-            f"high resolution, clear separation between elements {negative_param}"
+            f"A colorful flat design clipart sheet of {theme_type} elements containing {custom_subject}. "
+            f"{style_preset}, bright playful pastel colors, {isolation_keywords}, "
+            f"high resolution, crisp edges {negative_param}"
         )
 
         # Menampilkan Hasil
-        st.success(f"Prompt *Vectorize-Friendly* gaya {'Kawaii' if 'Kawaii' in style_option else 'Non-Kawaii'} berhasil dibuat!")
+        st.success(f"Prompt gaya Flat Vector {'Kawaii' if 'Kawaii' in style_option else 'Non-Kawaii'} berhasil dibuat!")
         st.text_area("Salin prompt ini ke DALL-E 3 / Midjourney v6 / Leonardo.ai:", value=final_prompt, height=200)
         
-        # Edukasi Tracing Vektor
+        # Edukasi Tracing Vektor untuk Gaya Ini
         st.info(f"""
-        💡 **Mengapa Prompt Ini Bagus untuk Di-trace (Vektor)?**
-        * **`clean solid color fills` & `no mesh gradients`**: Memaksa AI memakai warna blok/padat yang tegas. Ini mencegah terciptanya jutaan gradasi warna kecil yang biasanya bikin file SVG jadi bengkak dan pecah saat di-trace.
-        * **`sharp color separation`**: Batas antara warna satu dengan warna lainnya dibuat kontras tinggi, sehingga software/web *auto-trace* langsung mengenali garis batasnya dengan akurat.
-        * **Parameter Negatif Tambahan**: Ditambahkan larangan `--no blurs watercolor noise textures` untuk menghilangkan efek buram atau tekstur bintik-bintik yang sering merusak hasil vektor.
+        💡 **Mengapa gaya ini paling sempurna untuk Vektor (SVG)?**
+        * **`NO outlines, NO linework`**: Menghilangkan garis hitam penutup. Hasil tracing akan berupa potongan bidang warna yang bersih (*solid paths*) sehingga sangat disukai oleh pengguna Canva karena mudah diubah warnanya secara kustom.
+        * **`100% solid flat colors`**: Tanpa adanya gradasi atau bayangan lembut, software seperti Adobe Illustrator atau Vectorizer.ai bisa mengubah gambar ini menjadi SVG dalam hitungan detik dengan akurasi hampir 100% mirip aslinya.
         """)
