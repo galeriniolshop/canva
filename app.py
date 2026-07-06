@@ -238,23 +238,25 @@ decorated with {selected_decor}
             """
 
             negative_prompt = """
-            --no outlines
-            --no strokes
-            --no linework
-            --no gradients
-            --no shadows
-            --no realistic textures
-            --no photorealistic
-            --no 3d render
-            --no stickers
-            --no die cut border
-            --no overlapping objects
-            --no cropped icons
-            --no oversized icons
-            --no merged icons
-            --no scene composition
-            --no background illustration
-            """
+--no outlines
+--no strokes
+--no linework
+--no realistic gradients
+--no mesh gradients
+--no realistic shadows
+--no photorealistic lighting
+--no realistic textures
+--no photorealistic
+--no 3d render
+--no stickers
+--no die cut border
+--no overlapping objects
+--no cropped icons
+--no oversized icons
+--no merged icons
+--no scene composition
+--no background illustration
+"""
 
         else:
 
