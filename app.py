@@ -63,21 +63,26 @@ style_option = st.radio(
 # =====================================================
 
 visual_styles = [
-    "playful geometric cut paper style",
-    "modern abstract flat illustration style",
-    "organic blob shape vector style",
-    "retro educational graphic style",
-    "soft Scandinavian flat style",
-    "creative asymmetrical vector style",
-    "mid century modern illustration style",
-    "editorial infographic style",
-    "chunky colorful shape style",
-    "creative classroom poster style",
-    "Japanese stationery inspired style",
-    "modern museum educational style",
-    "playful preschool learning style",
-    "creative learning material style",
-    "vibrant educational branding style"
+    "premium commercial clipart style",
+    "layered paper cut illustration style",
+    "modern educational clipart style",
+    "storybook illustration style",
+    "Scandinavian children's book artwork",
+    "premium classroom resource illustration",
+    "Montessori learning material artwork",
+    "Japanese stationery inspired clipart",
+    "modern editorial illustration style",
+    "creative vector collage style",
+    "soft dimensional vector artwork",
+    "bold geometric clipart style",
+    "premium Canva marketplace illustration",
+    "handcrafted educational artwork",
+    "modern flashcard illustration style",
+    "playful commercial clipart style",
+    "clean layered vector illustration",
+    "premium infographic artwork",
+    "contemporary children's illustration",
+    "commercial best seller clipart style"
 ]
 
 color_palettes = [
