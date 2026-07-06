@@ -305,18 +305,47 @@ decorated with {selected_decor}
         # UNIQUENESS
         # =================================================
 
-        uniqueness_instruction = """
-        every object must have a completely unique silhouette,
-        different proportions,
-        different shape construction,
-        different color combinations,
-        different decorative treatment,
-        avoid repetitive icon structures,
-        avoid generic stock appearance,
-        avoid template based design,
-        every icon visually distinct from all others,
-        handcrafted exclusive feeling
-        """
+       uniqueness_instruction = """
+every object must have a completely unique silhouette,
+
+different proportions,
+
+different shape construction,
+
+different color combinations,
+
+different decorative treatment,
+
+different visual hierarchy,
+
+different shape language,
+
+different perspective angle,
+
+avoid repetitive icon structures,
+
+avoid copy paste appearance,
+
+avoid generic stock appearance,
+
+avoid template based design,
+
+avoid identical compositions,
+
+some objects front view,
+
+some objects angled view,
+
+some objects three quarter view,
+
+every icon visually distinct from all others,
+
+individually illustrated appearance,
+
+premium commercial clipart quality,
+
+exclusive handcrafted feeling
+"""
 
         # =================================================
         # GRID 5 X 4
