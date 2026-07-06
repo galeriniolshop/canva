@@ -63,26 +63,21 @@ style_option = st.radio(
 # =====================================================
 
 visual_styles = [
-    "premium commercial clipart style",
-    "layered paper cut illustration style",
-    "modern educational clipart style",
-    "storybook illustration style",
-    "Scandinavian children's book artwork",
-    "premium classroom resource illustration",
-    "Montessori learning material artwork",
-    "Japanese stationery inspired clipart",
-    "modern editorial illustration style",
-    "creative vector collage style",
-    "soft dimensional vector artwork",
-    "bold geometric clipart style",
-    "premium Canva marketplace illustration",
-    "handcrafted educational artwork",
-    "modern flashcard illustration style",
-    "playful commercial clipart style",
-    "clean layered vector illustration",
-    "premium infographic artwork",
-    "contemporary children's illustration",
-    "commercial best seller clipart style"
+    "playful geometric cut paper style",
+    "modern abstract flat illustration style",
+    "organic blob shape vector style",
+    "retro educational graphic style",
+    "soft Scandinavian flat style",
+    "creative asymmetrical vector style",
+    "mid century modern illustration style",
+    "editorial infographic style",
+    "chunky colorful shape style",
+    "creative classroom poster style",
+    "Japanese stationery inspired style",
+    "modern museum educational style",
+    "playful preschool learning style",
+    "creative learning material style",
+    "vibrant educational branding style"
 ]
 
 color_palettes = [
@@ -151,76 +146,22 @@ if st.button("✨ Generate Prompt"):
         # =================================================
 
         vector_preset = f"""
-{selected_style},
-
-{selected_modifier},
-
-premium commercial clipart artwork,
-
-modern layered vector illustration,
-
-clean paper cut inspired design,
-
-soft dimensional appearance,
-
-large bold color blocks,
-
-strong recognizable silhouettes,
-
-clean closed shapes,
-
-minimal anchor points,
-
-easy vectorization,
-
-easy SVG conversion,
-
-easy Adobe Illustrator editing,
-
-easy Vector Magic tracing,
-
-subtle depth using layered shapes,
-
-simple highlight elements,
-
-simple shadow elements,
-
-balanced composition,
-
-professional commercial artwork,
-
-high demand marketplace style,
-
-premium Canva Contributor quality,
-
-premium Adobe Stock quality,
-
-exclusive handcrafted appearance,
-
-not flat icon style,
-
-not app icon style,
-
-not ui icon style,
-
-not logo style,
-
-not sticker style,
-
-not generic stock icon pack,
-
-each object designed as a standalone illustration,
-
-high click through appeal,
-
-modern marketplace trend aesthetic,
-
-distinctive visual identity,
-
-using {selected_palette},
-
-decorated with {selected_decor}
-"""
+        {selected_style},
+        {selected_modifier},
+        100 percent solid flat vector artwork,
+        no outlines,
+        no strokes,
+        no linework,
+        no gradients,
+        no shadows,
+        no shading,
+        clean vector shapes,
+        distinctive silhouettes,
+        premium marketplace quality,
+        unique visual identity,
+        using {selected_palette},
+        decorated with {selected_decor}
+        """
 
         # =================================================
         # KAWAII / NON KAWAII
@@ -238,25 +179,23 @@ decorated with {selected_decor}
             """
 
             negative_prompt = """
---no outlines
---no strokes
---no linework
---no realistic gradients
---no mesh gradients
---no realistic shadows
---no photorealistic lighting
---no realistic textures
---no photorealistic
---no 3d render
---no stickers
---no die cut border
---no overlapping objects
---no cropped icons
---no oversized icons
---no merged icons
---no scene composition
---no background illustration
-"""
+            --no outlines
+            --no strokes
+            --no linework
+            --no gradients
+            --no shadows
+            --no realistic textures
+            --no photorealistic
+            --no 3d render
+            --no stickers
+            --no die cut border
+            --no overlapping objects
+            --no cropped icons
+            --no oversized icons
+            --no merged icons
+            --no scene composition
+            --no background illustration
+            """
 
         else:
 
@@ -307,47 +246,18 @@ decorated with {selected_decor}
         # UNIQUENESS
         # =================================================
 
-       uniqueness_instruction = """
-every object must have a completely unique silhouette,
-
-different proportions,
-
-different shape construction,
-
-different color combinations,
-
-different decorative treatment,
-
-different visual hierarchy,
-
-different shape language,
-
-different perspective angle,
-
-avoid repetitive icon structures,
-
-avoid copy paste appearance,
-
-avoid generic stock appearance,
-
-avoid template based design,
-
-avoid identical compositions,
-
-some objects front view,
-
-some objects angled view,
-
-some objects three quarter view,
-
-every icon visually distinct from all others,
-
-individually illustrated appearance,
-
-premium commercial clipart quality,
-
-exclusive handcrafted feeling
-"""
+        uniqueness_instruction = """
+        every object must have a completely unique silhouette,
+        different proportions,
+        different shape construction,
+        different color combinations,
+        different decorative treatment,
+        avoid repetitive icon structures,
+        avoid generic stock appearance,
+        avoid template based design,
+        every icon visually distinct from all others,
+        handcrafted exclusive feeling
+        """
 
         # =================================================
         # GRID 5 X 4
