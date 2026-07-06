@@ -151,22 +151,76 @@ if st.button("✨ Generate Prompt"):
         # =================================================
 
         vector_preset = f"""
-        {selected_style},
-        {selected_modifier},
-        100 percent solid flat vector artwork,
-        no outlines,
-        no strokes,
-        no linework,
-        no gradients,
-        no shadows,
-        no shading,
-        clean vector shapes,
-        distinctive silhouettes,
-        premium marketplace quality,
-        unique visual identity,
-        using {selected_palette},
-        decorated with {selected_decor}
-        """
+{selected_style},
+
+{selected_modifier},
+
+premium commercial clipart artwork,
+
+modern layered vector illustration,
+
+clean paper cut inspired design,
+
+soft dimensional appearance,
+
+large bold color blocks,
+
+strong recognizable silhouettes,
+
+clean closed shapes,
+
+minimal anchor points,
+
+easy vectorization,
+
+easy SVG conversion,
+
+easy Adobe Illustrator editing,
+
+easy Vector Magic tracing,
+
+subtle depth using layered shapes,
+
+simple highlight elements,
+
+simple shadow elements,
+
+balanced composition,
+
+professional commercial artwork,
+
+high demand marketplace style,
+
+premium Canva Contributor quality,
+
+premium Adobe Stock quality,
+
+exclusive handcrafted appearance,
+
+not flat icon style,
+
+not app icon style,
+
+not ui icon style,
+
+not logo style,
+
+not sticker style,
+
+not generic stock icon pack,
+
+each object designed as a standalone illustration,
+
+high click through appeal,
+
+modern marketplace trend aesthetic,
+
+distinctive visual identity,
+
+using {selected_palette},
+
+decorated with {selected_decor}
+"""
 
         # =================================================
         # KAWAII / NON KAWAII
